@@ -1,0 +1,54 @@
+---
+import Header from '../components/Header.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewGamer - Buscador</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" href="./img/icono 3.svg">
+    <link href="/styles/styles.css" rel="stylesheet">
+	<script src="/js/beforeLoad.js" is:inline></script>
+</head>
+
+<body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+    <dialog open id="loading" class="flex flex-col">
+        <span class="lds-dual-ring"></span>
+        <span>Loading...</span>
+    </dialog>
+<Header></Header>
+    <section class="py-10">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-3">Búsqueda</h2>
+            <div class="flex flex-row justify-center items-center gap-3">
+                <div class="color3 darkColor3 relative inline-block text-left">
+                    <div class="w-full  max-w-sm min-w-[200px]">
+                        <div class="relative">
+                            <select id="selectCategory"
+                                class="w-64 font-semibold backgroundColor2 darkColor6 darkBackgroundColor9 text-sm rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+                            </select>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2"
+                                stroke="currentColor" class="darkColor6 darkBackgroundColor9 h-5 w-5 ml-1 absolute top-2.5 right-2.5 text-slate-700">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="product-grid" class="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-4">
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script src="/js/common.js" is:inline></script>
+<script src="/js/buscador.js" is:inline></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</html>

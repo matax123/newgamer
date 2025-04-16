@@ -1,0 +1,36 @@
+---
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NewGamer - Confirmar</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" is:inline></script>
+        <script src="https://sdk.mercadopago.com/js/v2" is:inline></script>
+        <link rel="icon" href="./img/icono 3.svg" />
+        <link href="/styles/styles.css" rel="stylesheet" />
+        <script src="/js/beforeLoad.js" is:inline></script>
+    </head>
+
+    <body>
+        <style>
+            body {
+                font-family: ui-sans-serif, system-ui, sans-serif,
+                    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+                    "Noto Color Emoji";
+            }
+        </style>
+        <div class="container mx-auto px-4 py-10 relative">
+            <div id="cardPaymentBrick_container"></div>
+            <div
+            id="total"
+            class="hidden py-3 mx-4 px-4 relative bg-red-500 text-white font-semibold text-md rounded-2xl rounded-t"
+            ></div>
+        </div>
+    </body>
+
+    <script src="/js/confirmar.js" is:inline></script>
+</html>

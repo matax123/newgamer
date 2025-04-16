@@ -1,0 +1,54 @@
+---
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NewGamer - Producto</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="icon" href="./img/icono 3.svg" />
+        <link href="/styles/styles.css" rel="stylesheet" />
+        <script src="/js/beforeLoad.js" is:inline></script>
+    </head>
+    <body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+        <dialog open id="loading" class="flex flex-col">
+            <span class="lds-dual-ring"></span>
+            <span>Loading...</span>
+        </dialog>
+    <Header />
+        <section class="py-10">
+            <div class="container mx-auto">
+                <div class="product flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-8 p-8">
+                    <div id="carousel" class="relative w-full">
+                        <img id="carousel" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="productInfo">
+                        <h1 id="productTitle" class="color4 leading-none text-lg md:text-xl md:leading-none"></h1>
+                        <p id="productPrice" class="text-xl font-bold pt-1 md:pt-3"></p>
+                        <p class="hidden">Stock: <span id="productStock" class="font-semibold"></span></p>
+                        <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
+                            Agregar al carrito
+                        </button>
+                        <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-5">
+                            <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
+                                +
+                            </button>
+                            <span class="quantity font-bold">0</span>
+                            <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="removeProduct()">
+                                -
+                            </button>
+                        </div>
+                        <div id="productDescription" class="mt-4 leading-snug"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" is:inline></script> 
+    <script src="/js/common.js" is:inline></script>
+    <script src="/js/producto.js" is:inline></script>
+</html>

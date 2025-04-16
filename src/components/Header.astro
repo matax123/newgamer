@@ -1,0 +1,45 @@
+    <header class="container flex flex-col mx-auto" style="font-weight: 600; position: sticky">
+        <div class="flex flex-row justify-between items-center p-3 mt-5 px-5">
+
+            <div class="flex flex-row gap-10">
+                <button onclick="changeDayTime()">
+                    <svg id="dayIcon" class="color1 darkColor5 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm2.312-4.897c0 2.206 1.794 4 4 4s4-1.794 4-4-1.794-4-4-4-4 1.794-4 4zm10 0c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" />
+                    </svg>
+                    <svg id="nightIcon" class="color1 darkColor5 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-1.109 0-2.178.162-3.197.444 3.826 5.933-2.026 13.496-8.781 11.128l-.022.428c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12z" />
+                    </svg>
+                </button>
+                <div class="flex flex-row px-5 gap-10">
+                    <a class="hidden sm:block" href="/">INICIO</a>
+                    <a class="hidden sm:block" href="/buscador?category=COMPUTADOR DE ESCRITORIO">DESKTOPS</a>
+                    <a class="hidden sm:block" href="/buscador?category=NOTEBOOK">NOTEBOOKS</a>
+                </div>
+            </div>
+            <div class="flex flex-row gap-3">
+                <a href="/buscador">
+                    <svg class="color1 darkColor5" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round"
+                        stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m15.97 17.031c-1.479 1.238-3.384 1.985-5.461 1.985-4.697 0-8.509-3.812-8.509-8.508s3.812-8.508 8.509-8.508c4.695 0 8.508 3.812 8.508 8.508 0 2.078-.747 3.984-1.985 5.461l4.749 4.75c.146.146.219.338.219.531 0 .587-.537.75-.75.75-.192 0-.384-.073-.531-.22zm-5.461-13.53c-3.868 0-7.007 3.14-7.007 7.007s3.139 7.007 7.007 7.007c3.866 0 7.007-3.14 7.007-7.007s-3.141-7.007-7.007-7.007z"
+                            fill-rule="nonzero" />
+                    </svg>
+                </a>
+                <button class="shopping-cart relative m-0 p-0 flex flex-row justify-center items-center" onclick="onClickShoppingCart('/carrito')">
+                    <svg class="color1 darkColor5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+                    </svg>
+                    <span id="cartQuantity"
+                        class="hidden absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full text-white text-xs font-bold w-6 h-6 flex items-center justify-center">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+        <hr class="mt-5 darkBackgroundColor2 h-[1px]">
+    </header>

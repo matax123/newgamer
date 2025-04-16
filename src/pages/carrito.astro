@@ -1,0 +1,143 @@
+---
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NewGamer - Carrito</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
+        ></script>
+        <link rel="icon" href="./img/icono 3.svg" />
+        <link href="/styles/styles.css" rel="stylesheet" />
+        <script src="/js/beforeLoad.js" is:inline></script>
+    </head>
+
+    <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+        <dialog open id="loading" class="flex flex-col">
+            <span class="lds-dual-ring"></span>
+            <span>Loading...</span>
+        </dialog>
+    <Header />
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h1 class="text-center pb-10">Carrito</h1>
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                <div id="product-grid" class="flex flex-col gap-1"></div>
+                <div id="total" class="flex flex-col gap-3 pt-2">
+                    <span class="underline">Entrega</span>
+                    <input
+                        type="text"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        disabled
+                        value="Chile"
+                    />
+                    <select
+                        name=""
+                        id="region"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 px-1"
+                        oninput="formUpdate()"
+                    >
+                        <option value="1">Región de Arica y Parinacota</option>
+                        <option value="2">Región de Tarapacá</option>
+                        <option value="3">Región de Antofagasta</option>
+                        <option value="4">Región de Atacama</option>
+                        <option value="5">Región de Coquimbo</option>
+                        <option value="6">Región de Valparaíso</option>
+                        <option value="7" selected
+                            >Región Metropolitana de Santiago</option
+                        >
+                        <option value="8"
+                            >Región del Libertador General Bernardo O'Higgins</option
+                        >
+                        <option value="9">Región del Maule</option>
+                        <option value="10">Región de Ñuble</option>
+                        <option value="11">Región del Biobío</option>
+                        <option value="12">Región de La Araucanía</option>
+                        <option value="13">Región de Los Ríos</option>
+                        <option value="14">Región de Los Lagos</option>
+                        <option value="15"
+                            >Región de Aysén del General Carlos Ibáñez del Campo</option
+                        >
+                        <option value="16"
+                            >Región de Magallanes y de la Antártica Chilena</option
+                        >
+                    </select>
+                    <input
+                        id="ciudad"
+                        type="text"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        placeholder="Ciudad"
+                        oninput="formUpdate()"
+                    />
+                    <input
+                        id="calle"
+                        type="text"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        placeholder="Calle"
+                        oninput="formUpdate()"
+                    />
+                    <input
+                        id="numero"
+                        type="number"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        placeholder="Número"
+                        oninput="formUpdate()"
+                    />
+                    <input
+                        id="apartamentoCasa"
+                        type="text"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        placeholder="Apartamento/Casa (si aplica)"
+                        oninput="formUpdate()"
+                    />
+                    <span class="price font-semibold">Total: </span>
+                    <div class="flex flex-row gap-1">
+                        <input
+                            id="check"
+                            type="checkbox"
+                            oninput="formUpdate()"
+                        />
+                        <span class="text-sm"
+                            >Acepto los <a
+                                href="/info"
+                                target="_blank"
+                                class="color7">términos y condiciones</a
+                            ></span
+                        >
+                    </div>
+                    <button
+                        id="confirmar"
+                        style="max-width: 500px;"
+                        onclick="createOrder()"
+                        disabled
+                        class="flex items-center justify-center text-center w-64 enabled:bg-red-600 disabled:bg-gray-500 disabled:border-[1px] text-white font-bold py-2 px-4 rounded-lg enabled:shadow-lg enabled:hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 w-full md:w-[300px]"
+                    >
+                        <span class="relative translate-x-1 darkColor2">Confirmar</span>
+                        <svg
+                            class="rotate-180 relative translate-x-3 translate-y-[1px] color2 darkColor2"
+                            clip-rule="evenodd"
+                            fill-rule="evenodd"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                d="m10.978 14.999v3.251c0 .412-.335.75-.752.75-.188 0-.375-.071-.518-.206-1.775-1.685-4.945-4.692-6.396-6.069-.2-.189-.312-.452-.312-.725 0-.274.112-.536.312-.725 1.451-1.377 4.621-4.385 6.396-6.068.143-.136.33-.207.518-.207.417 0 .752.337.752.75v3.251h9.02c.531 0 1.002.47 1.002 1v3.998c0 .53-.471 1-1.002 1z"
+                                fill-rule="nonzero"></path></svg
+                        >
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </body>
+
+    <script src="/js/common.js" is:inline></script>
+    <script src="/js/carrito.js" is:inline></script>
+</html>

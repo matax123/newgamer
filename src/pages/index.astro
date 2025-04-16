@@ -1,0 +1,108 @@
+---
+import Header from '../components/Header.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewGamer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" href="./img/icono 3.svg">
+    <link href="/styles/styles.css" rel="stylesheet">
+	<script src="/js/beforeLoad.js" is:inline></script>
+</head>
+
+<body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+    <dialog open id="loading" class="flex flex-col">
+        <span class="lds-dual-ring"></span>
+        <span>Loading...</span>
+    </dialog>
+    <Header></Header>
+
+	<section class="w-full flex flex-column justify-center items-center py-10">
+		<div class="container flex flex-col">
+			<div
+				class="flex flex-col lg:grid lg:grid-cols-2 px-4 justify-center items-center gap-5 xl:gap-x-36">
+				<div class="flex flex-col lg:items-end lg:col-start-1 lg:row-start-1">
+					<div class="flex flex-col justify-center items-center">
+						<span class="text-5xl leading-tight text-center text-balance">
+							Encuentra los <b class="color3 darkColor7">mejores</b><br>
+						</span>
+						<span class="text-5xl w-full">
+							<b class="color5 darkColor2 flex justify-center items-center bg-[url('./img/redDash.png')] bg-contain bg-center bg-no-repeat w-full h-[200px] text-center"
+								style="text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.7);">
+								PC GAMER
+							</b>
+						</span>
+					</div>
+				</div>
+				<div class="flex justify-center lg:justify-start">
+					<img class="difuminated lg:col-start-2 lg:row-start-1" src="img/002.png" alt="">
+				</div>
+				<div class="w-full flex flex-row justify-center lg:col-span-2">
+					<a style="max-width: 500px;" href="/buscador"
+						class="text-center w-full bg-red-600 text-white font-bold py-4 px-8 text-lg rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+						Start!
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="w-full py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">Últimas Noticias</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="color3 backgroundColor5 darkColor2 darkBackgroundColor9 p-5 shadow-lg rounded-lg">
+                    <div class="relative w-full h-0" style="padding-top: 100%;"> <!-- 1:1 Aspect Ratio Wrapper -->
+                        <img class="absolute inset-0 w-full h-full object-cover rounded-md mb-4" src="img/004.avif">
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 pt-4 leading-tight"><b>God of War Ragnarök</b> ya está
+                        disponible para PC</h3>
+                    <p class="mb-4 text-sm leading-tight">Kratos y Atreus finalmente están en nuestras máquinas, y la
+                        emoción
+                        está al máximo. Si creías que las batallas en consola eran intensas, prepárate para llevar la
+                        experiencia al siguiente nivel con las mejoras gráficas y el rendimiento optimizado para PC. Los
+                        escenarios son impresionantes, y las criaturas míticas prometen dejarte sin aliento. Así que,
+                        acomódate, afila tu hacha, y prepárate para enfrentar el Ragnarok con toda la potencia de tu
+                        equipo. ¡La batalla te espera!</p>
+                    <!-- <a href="#" class="text-blue-500 font-bold hover:underline">Leer más</a> -->
+                </div>
+                <div class="color3 backgroundColor5 darkColor2 darkBackgroundColor9 p-5 shadow-lg rounded-lg">
+                    <div class="relative w-full h-0" style="padding-top: 100%;"> <!-- 1:1 Aspect Ratio Wrapper -->
+                        <img class="absolute inset-0 w-full h-full object-cover rounded-md mb-4" src="img/006.avif">
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 pt-4 leading-tight">AMD Anuncia <b>Nuevos Procesadores Ryzen
+                            9000</b> con Tecnología 3D V-Cache</h3>
+                    <p class="mb-4 text-sm leading-tight">AMD ha revelado su nueva línea de procesadores Ryzen,
+                        destacando el
+                        Ryzen 9 9950X3D, un potente chip con 16 núcleos, 32 hilos y 144 MB de caché. Le sigue el Ryzen 9
+                        9900X3D, con 12 núcleos, 24 hilos y 140 MB de caché, ofreciendo un gran equilibrio entre
+                        potencia y eficiencia. Finalmente, el Ryzen 7 9800X3D presenta 8 núcleos, 16 hilos y 96 MB de
+                        caché. Estos procesadores, con la innovadora tecnología 3D V-Cache, están diseñados para brindar
+                        un rendimiento excepcional en gaming y aplicaciones profesionales.</p>
+                </div>
+                <div class="color3 backgroundColor5 darkColor2 darkBackgroundColor9 p-5 shadow-lg rounded-lg">
+                    <div class="relative w-full h-0" style="padding-top: 100%;"> <!-- 1:1 Aspect Ratio Wrapper -->
+                        <img class="absolute inset-0 w-full h-full object-cover rounded-md mb-4" src="img/007.jpg">
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 pt-4 leading-tight"><b>Age of Mythology: Retold</b> Llega con
+                        Mejoras y Nuevas
+                        Funciones</h3>
+                    <p class="mb-4 text-sm leading-tight">La esperada remasterización de Age of Mythology: Retold ya
+                        está
+                        disponible, trayendo gráficos mejorados y una experiencia de juego optimizada. Con soporte para
+                        multijugador en línea y nuevas mecánicas, esta versión actualizada invita tanto a fanáticos
+                        veteranos como a nuevos jugadores a redescubrir este clásico de la estrategia en tiempo real,
+                        ahora con un diseño moderno y funcional.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+<script src="/js/common.js" is:inline></script>
+
+</html>
