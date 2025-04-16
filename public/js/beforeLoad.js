@@ -1,4 +1,4 @@
-const backendUrl = 'https://backend.newgamer.cl:5000';
+const backendUrl = 'https://backend.newgamer.cl';
 
 let dayTime = localStorage.getItem('dayTime');
 const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
