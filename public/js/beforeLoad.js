@@ -1,3 +1,5 @@
+const backendUrl = 'https://backend.newgamer.cl:5000';
+
 let dayTime = localStorage.getItem('dayTime');
 const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 if(dayTime == null && isDarkMode) dayTime = 'night';
@@ -8,5 +10,3 @@ if (dayTime != null && dayTime == 'night') {
 else{
     document.documentElement.setAttribute('theme', 'light');
 }
-
-let backendUrl = 'http://localhost:5000';
