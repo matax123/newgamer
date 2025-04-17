@@ -13,7 +13,7 @@ import Header from "../components/Header.astro";
         <link href="/styles/styles.css" rel="stylesheet" />
         <script src="/js/beforeLoad.js" is:inline></script>
     </head>
-    <body class="preload" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+    <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
         <dialog open id="loading" class="flex flex-col">
             <span class="lds-dual-ring"></span>
             <span>Loading...</span>
@@ -26,7 +26,7 @@ import Header from "../components/Header.astro";
                         <img id="carousel" class="absolute inset-0 w-full h-full object-cover">
                     </div>
                     <div class="productInfo">
-                        <h1 id="productTitle" class="color4 leading-none text-lg md:text-xl md:leading-none"></h1>
+                        <h1 id="productTitle" class="color3 darkColor5 leading-none text-lg md:text-xl md:leading-none"></h1>
                         <p id="productPrice" class="text-xl font-bold pt-1 md:pt-3"></p>
                         <p class="hidden">Stock: <span id="productStock" class="font-semibold"></span></p>
                         <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">

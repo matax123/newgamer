@@ -12,10 +12,11 @@ import Header from "../components/Header.astro";
         <script src="https://sdk.mercadopago.com/js/v2" is:inline></script>
         <link rel="icon" href="./img/icono 3.svg" />
         <link href="/styles/styles.css" rel="stylesheet" />
+        <link href="/styles/mercadopago.css" rel="stylesheet" />
         <script src="/js/beforeLoad.js" is:inline></script>
     </head>
 
-    <body>
+    <body class="color3 darkBackgroundColor1 darkColor5">
         <style>
             body {
                 font-family: ui-sans-serif, system-ui, sans-serif,
@@ -23,11 +24,11 @@ import Header from "../components/Header.astro";
                     "Noto Color Emoji";
             }
         </style>
-        <div class="container mx-auto px-4 py-10 relative">
-            <div id="cardPaymentBrick_container"></div>
+        <div class="container mx-auto p-10 relative">
+            <div id="cardPaymentBrick_container" class="text-xs"></div>
             <div
             id="total"
-            class="hidden py-3 mx-4 px-4 relative bg-red-500 text-white font-semibold text-md rounded-2xl rounded-t"
+            class="hidden py-3 px-4 relative transform -translate-y-10 bg-red-500 text-white font-semibold text-md rounded-b-2xl"
             ></div>
         </div>
     </body>

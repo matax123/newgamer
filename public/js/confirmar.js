@@ -30,7 +30,7 @@
                     // callback llamado cuando Brick esté listo
                     let total = document.getElementById('total');
                     let formattedTotal = transactionAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    total.innerText = `Monto a pagar: $${formattedTotal}`;
+                    total.innerText = `Total: $${formattedTotal}`;
                     total.classList.remove('hidden');
                 },
                 onSubmit: (cardFormData) => {
