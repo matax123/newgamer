@@ -105,3 +105,44 @@ table tr:nth-child(even) {
     }
 }
 /* END: TABLE */
+
+.difuminated {
+    mask-image: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 1) 0%, 
+        rgba(0, 0, 0, 0.8) 40%, 
+        rgba(0, 0, 0, 0.5) 70%, 
+        rgba(0, 0, 0, 0) 100%);
+}
+
+.product-card {
+    border: 2px solid var(--colorBG1);
+    padding: 1rem;
+}
+
+
+/* OTHERS */
+.dialog[open] {
+    width: 400px;
+    background-color: var(--colorBG1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow1);
+    color: var(--color3);
+}
+
+/* Remove border when an element is focused */
+* {
+    border: none;
+    outline: none;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

@@ -11,13 +11,18 @@ import Header from "../components/Header.astro";
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
         ></script>
         <link rel="icon" href="./img/icono 3.svg" />
-        <link href="/styles/styles.css" rel="stylesheet" />
+
+        <link href="/styles/normalizer.css" rel="stylesheet">
+        <link href="/styles/colors.css" rel="stylesheet">
+        <link href="/styles/loader.css" rel="stylesheet">
+        <link href="/styles/styles.css" rel="stylesheet">
+        
         <script src="/js/beforeLoad.js" is:inline></script>
     </head>
     <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
-        <dialog open id="loading" class="flex flex-col">
+        <dialog open id="loading" class="flex flex-col color1 darkColor5">
             <span class="lds-dual-ring"></span>
-            <span>Loading...</span>
+            <span>Cargando...</span>
         </dialog>
     <Header />
     <section class="py-10">

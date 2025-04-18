@@ -11,14 +11,19 @@ import Header from '../components/Header.astro';
     <title>NewGamer</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="icon" href="./img/icono 3.svg">
+
+    <link href="/styles/normalizer.css" rel="stylesheet">
+    <link href="/styles/colors.css" rel="stylesheet">
+    <link href="/styles/loader.css" rel="stylesheet">
     <link href="/styles/styles.css" rel="stylesheet">
+
 	<script src="/js/beforeLoad.js" is:inline></script>
 </head>
 
 <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
-    <dialog open id="loading" class="flex flex-col">
+    <dialog open id="loading" class="flex flex-col color1 darkColor5">
         <span class="lds-dual-ring"></span>
-        <span>Loading...</span>
+        <span>Cargando...</span>
     </dialog>
     <Header></Header>
 
@@ -72,17 +77,16 @@ import Header from '../components/Header.astro';
                 </div>
                 <div class="color3 backgroundColor5 darkColor2 darkBackgroundColor9 p-5 shadow-lg rounded-lg">
                     <div class="relative w-full h-0" style="padding-top: 100%;"> <!-- 1:1 Aspect Ratio Wrapper -->
-                        <img class="absolute inset-0 w-full h-full object-cover rounded-md mb-4" src="img/006.avif">
+                        <img class="absolute inset-0 w-full h-full object-cover rounded-md mb-4" src="img/008.png">
                     </div>
-                    <h3 class="text-2xl font-semibold mb-2 pt-4 leading-tight">AMD Anuncia <b>Nuevos Procesadores Ryzen
-                            9000</b> con Tecnología 3D V-Cache</h3>
-                    <p class="mb-4 text-sm leading-tight">AMD ha revelado su nueva línea de procesadores Ryzen,
-                        destacando el
-                        Ryzen 9 9950X3D, un potente chip con 16 núcleos, 32 hilos y 144 MB de caché. Le sigue el Ryzen 9
-                        9900X3D, con 12 núcleos, 24 hilos y 140 MB de caché, ofreciendo un gran equilibrio entre
-                        potencia y eficiencia. Finalmente, el Ryzen 7 9800X3D presenta 8 núcleos, 16 hilos y 96 MB de
-                        caché. Estos procesadores, con la innovadora tecnología 3D V-Cache, están diseñados para brindar
-                        un rendimiento excepcional en gaming y aplicaciones profesionales.</p>
+                    <h3 class="text-2xl font-semibold mb-2 pt-4 leading-tight">NVIDIA Presenta la Nueva <b>GeForce RTX 5060 Ti</b> de 16 GB para Jugadores Exigentes</h3>
+                    <p class="mb-4 text-sm leading-tight">NVIDIA ha anunciado oficialmente la GeForce RTX 5060 Ti con 16 GB de memoria GDDR6,
+                        dirigida a gamers que buscan alto rendimiento sin comprometer el presupuesto.
+                        Basada en la arquitectura Ada Lovelace, esta tarjeta gráfica ofrece mejoras sustanciales en trazado de rayos,
+                        DLSS 4 y Multiframe Generation. Gracias a sus 16 GB de VRAM, es ideal para juegos en 1440p o 4K,
+                        y tareas creativas que requieren mayor capacidad gráfica.
+                        La RTX 5060 Ti promete ser una opción equilibrada entre potencia, eficiencia y
+                        precio competitivo para jugadores y creadores de contenido.</p>
                 </div>
                 <div class="color3 backgroundColor5 darkColor2 darkBackgroundColor9 p-5 shadow-lg rounded-lg">
                     <div class="relative w-full h-0" style="padding-top: 100%;"> <!-- 1:1 Aspect Ratio Wrapper -->
