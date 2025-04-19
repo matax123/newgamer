@@ -1,10 +1,29 @@
 //HTML FUNCTIONS
 
+let firstTimeAdd = true;
 function addProduct() {
     productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
     productsIds.push(productId);
     localStorage.setItem('productsIds', JSON.stringify(productsIds));
     refreshProductInCart();
+    if(firstTimeAdd) {
+        firstTimeAdd = false;
+        Swal.fire({
+            title: "Producto agregado",
+            icon: "success",	
+            showDenyButton: true,
+            confirmButtonText: "Ir al carrito",
+            denyButtonText: `Seguir comprando`,
+            customClass: {
+                popup: 'color1 backgroundColor4 darkColor2 darkBackgroundColor1',
+              confirmButton: 'font-semibold color2 backgroundColor11 w-48 py-2 px-4 m-1 rounded-lg',
+              denyButton: 'font-semibold color7 darkColor2 darkBackgroundColor9 w-48 py-2 px-4 m-1 rounded-lg',
+            },
+            buttonsStyling: false
+          }).then((result) => {
+            if (result.isConfirmed) window.location.href = "/carrito";
+          });
+    }
 }
 
 function removeProduct() {
