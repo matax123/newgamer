@@ -63,7 +63,7 @@ function refreshProductInCart() {
 function createCarousel(container, filesNames) {
     // Build carousel HTML
     let carouselHTML = `
-        <div class="carousel">
+        <div class="carousel w-full aspect-square">
             <div class="carousel-track">
                 //SLIDES//
             </div>
@@ -98,8 +98,8 @@ function createCarousel(container, filesNames) {
 
     filesNames.forEach((fileName, index) => {
         thumbnailsHTML += `
-            <button class="w-20 h-20 rounded-lg overflow-hidden" data-index="${index}" onclick="onThumbnailClick(${index})">
-                <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName.replace(/\.mp4$/i, '.avif')}" alt="Video Thumbnail ${index + 1}"  />
+            <button class="w-20 h-20 rounded-lg overflow-hidden" data-index="${index}">
+                <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName}" alt="Video Thumbnail ${index + 1}"  />
             </button>`;
     });
     
@@ -144,52 +144,51 @@ function createCarousel(container, filesNames) {
             button.classList.toggle('opacity-50', !isCurrentSlide);
             button.classList.toggle('opacity-100', isCurrentSlide);
         });
-    }
-
-    container.querySelector('.thumbnails').addEventListener('click', (e) => {
-        const button = e.target.closest('button');
-        if (button) {
-            const index = button.getAttribute('data-index');
-            currentSlide = parseInt(index);
-            updateCarousel();
         }
-    });
 
-    // Button event listeners
-    prevButton.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateCarousel();
-    });
-
-    nextButton.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateCarousel();
-    });
-
-    // Initial carousel update with a slight delay
-    setTimeout(() => {
-        updateCarousel();  // Recalculate after DOM is fully loaded
-    }, 100);  // 100ms delay to ensure layout is rendered before carousel update
-
-    // Recalculate carousel position on window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        // Clear any ongoing resize timeout
-        clearTimeout(resizeTimeout);
-
-        // Temporarily disable smooth transition during resizing for quicker update
-        carouselTrack.style.transition = 'none';  // Disable transition
-
-        // Force the layout to recalculate
-        requestAnimationFrame(() => {
-            updateCarousel();  // Recalculate carousel position immediately
+        container.querySelector('.thumbnails').addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (button) {
+                const index = button.getAttribute('data-index');
+                currentSlide = parseInt(index);
+                updateCarousel();
+            }
         });
 
-        // Re-enable the smooth transition for normal navigation after a slight delay
-        resizeTimeout = setTimeout(() => {
-            carouselTrack.style.transition = 'transform 0.2s ease';  // Re-enable the smooth transition
-        }, 100);
-    });
+        // Button event listeners
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        });
+
+        // Initial carousel update with a slight delay
+        setTimeout(() => {
+            updateCarousel();  // Recalculate after DOM is fully loaded
+        }, 100);  // 100ms delay to ensure layout is rendered before carousel update
+
+        // Recalculate carousel position on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            // Clear any ongoing resize timeout
+            clearTimeout(resizeTimeout);
+
+            carouselTrack.style.transition = 'none';  // Disable transition
+
+            // Force the layout to recalculate
+            requestAnimationFrame(() => {
+                updateCarousel();  // Recalculate carousel position immediately
+            });
+
+            // Re-enable the smooth transition for normal navigation after a slight delay
+            resizeTimeout = setTimeout(() => {
+                carouselTrack.style.transition = 'transform 0.25s ease-in-out';  // Re-enable the smooth transition
+            }, 100);
+        });
 }
 
 //END: HTML FUNCTIONS
