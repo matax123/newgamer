@@ -97,17 +97,10 @@ function createCarousel(container, filesNames) {
     let thumbnailsHTML = '';
 
     filesNames.forEach((fileName, index) => {
-        if (fileName.endsWith('.mp4')) {
-            thumbnailsHTML += `
-                <button class="w-20 h-20 rounded-lg overflow-hidden" data-index="${index}" onclick="onThumbnailClick(${index})">
-                    <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName.replace(/\.mp4$/i, '.avif')}" alt="Video Thumbnail ${index + 1}"  />
-                </button>`;
-        } else {
-            thumbnailsHTML += `
-                <button class="w-20 h-20 rounded-lg" data-index="${index}" onclick="onThumbnailClick(${index})">
-                    <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetImage?fileName=${fileName}" alt="Thumbnail ${index + 1}" />
-                </button>`;
-        }
+        thumbnailsHTML += `
+            <button class="w-20 h-20 rounded-lg overflow-hidden" data-index="${index}" onclick="onThumbnailClick(${index})">
+                <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName.replace(/\.mp4$/i, '.avif')}" alt="Video Thumbnail ${index + 1}"  />
+            </button>`;
     });
     
 
