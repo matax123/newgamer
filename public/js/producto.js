@@ -87,7 +87,7 @@ function createCarousel(container, filesNames) {
                             </div>`;
         } else {
             slidesHTML += `<div class="carousel-slide">
-                                <img src="${backendUrl}/GetImage?fileName=${fileName}" alt="Product Image">
+                                <img class="p-4" src="${backendUrl}/GetImage?fileName=${fileName}" alt="Product Image">
                             </div>`;
         }
     });

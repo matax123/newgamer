@@ -6,7 +6,7 @@ function createProductElement(id, title, category, price, img, quantity) {
             <div>
                 <div class="relative w-full h-48 overflow-hidden" style="padding-top: 100%;">
                     <a href="/producto?id=${id}" class="absolute inset-0">
-                        <img src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
+                        <img class="p-4" src="${img}" alt="Graphics Card" class="absolute inset-0 w-full h-full object-cover">
                     </a>
                 </div>
                 <h2 class="text-xl font-semibold leading-none pt-2">${title}</h2>
