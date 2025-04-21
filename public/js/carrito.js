@@ -2,7 +2,7 @@ function createProductElement(id, title, category, price, img, quantity) {
     return html = `
         <div class="product-card flex flex-col gap-0 md:flex-row justify-between p-4 backgroundColor2 darkBackgroundColor10 md:max-h-[160px]" data-product-id="${id}">
             <div class="itemImage md:relative md:w-32 md:pt-[100%]">
-                <img src="${img}" class="w-32 h-32 md:absolute md:inset-0 md:object-cover p-0 m-0">
+                <img src="${img}" class="w-32 h-32 md:absolute md:inset-0 md:object-cover p-2 m-0">
             </div>
             <div class="grid grid-cols-2 pt-2 md:pt-0 gap-2 md:grid-rows-[30px,30px] md:w-[calc(100%-9rem)]">
                 <span class="leading-none font-semibold flex items-center md:items-start">${title}</span>
