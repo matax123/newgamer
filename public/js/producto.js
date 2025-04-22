@@ -82,12 +82,12 @@ function createCarousel(container, filesNames) {
         if (fileName.endsWith('.mp4')) {
             slidesHTML += `<div class="carousel-slide bg-black">
                                 <video class="carousel-video" loop muted autoplay>
-                                    <source src="${backendUrl}/GetVideo?fileName=${fileName}" type="video/mp4">
+                                    <source src="${backendUrl}/GetVideo?fileName=${fileName}" type="video/mp4" draggable="false">
                                 </video>
                             </div>`;
         } else {
             slidesHTML += `<div class="carousel-slide">
-                                <img class="p-4" src="${backendUrl}/GetImage?fileName=${fileName}" alt="Product Image">
+                                <img class="p-4" src="${backendUrl}/GetImage?fileName=${fileName}" alt="Product Image" draggable="false">
                             </div>`;
         }
     });
@@ -99,7 +99,7 @@ function createCarousel(container, filesNames) {
     filesNames.forEach((fileName, index) => {
         thumbnailsHTML += `
             <button class="w-20 h-20 rounded-lg overflow-hidden" data-index="${index}">
-                <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName}" alt="Video Thumbnail ${index + 1}"  />
+                <img class="w-full h-full object-cover hover:scale-110" src="${backendUrl}/GetThumbnail?fileName=${fileName}" alt="Video Thumbnail ${index + 1}" draggable="false" />
             </button>`;
     });
     
@@ -189,6 +189,80 @@ function createCarousel(container, filesNames) {
                 carouselTrack.style.transition = 'transform 0.25s ease-in-out';  // Re-enable the smooth transition
             }, 100);
         });
+
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        
+        // Touch + Mouse events
+        const addDragEvents = (slide, index) => {
+            const slideElement = slide;
+    
+            const getPositionX = (event) =>
+                event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    
+            const touchStart = (index) => (event) => {
+                isDragging = true;
+                startX = getPositionX(event);
+                currentSlide = index;
+                animationID = requestAnimationFrame(animation);
+                carouselTrack.style.transition = 'none';
+            };
+    
+            const touchMove = (event) => {
+                if (!isDragging) return;
+                const currentX = getPositionX(event);
+                const deltaX = currentX - startX;
+                currentTranslate = prevTranslate + deltaX;
+            };
+    
+            const touchEnd = () => {
+                cancelAnimationFrame(animationID);
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+    
+                // Slide threshold: if moved more than 50px
+                if (movedBy < -50 && currentSlide < slides.length - 1) currentSlide += 1;
+                if (movedBy > 50 && currentSlide > 0) currentSlide -= 1;
+    
+                setPositionByIndex();
+            };
+    
+            const animation = () => {
+                setSliderPosition();
+                if (isDragging) requestAnimationFrame(animation);
+            };
+    
+            const setSliderPosition = () => {
+                carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+            };
+    
+            const setPositionByIndex = () => {
+                const slideWidth = slides[0].clientWidth;
+                currentTranslate = -currentSlide * slideWidth;
+                prevTranslate = currentTranslate;
+                carouselTrack.style.transition = 'transform 0.25s ease-in-out';
+                setSliderPosition();
+                updateCarousel();  // Update current state (videos, thumbnails, etc.)
+            };
+    
+            // Event listeners
+            slideElement.addEventListener('mousedown', touchStart(index));
+            slideElement.addEventListener('mousemove', touchMove);
+            slideElement.addEventListener('mouseup', touchEnd);
+            slideElement.addEventListener('mouseleave', () => isDragging && touchEnd());
+    
+            slideElement.addEventListener('touchstart', touchStart(index));
+            slideElement.addEventListener('touchmove', touchMove);
+            slideElement.addEventListener('touchend', touchEnd);
+        };
+    
+        slides.forEach((slide, index) => {
+            addDragEvents(slide, index);
+        });
+    
 }
 
 //END: HTML FUNCTIONS
