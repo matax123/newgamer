@@ -1,11 +1,19 @@
     let orderId = window.location.search.split('=')[1];
-    let transactionAmount = window.location.search.split('=')[2];
-    console.log(transactionAmount)
+    let userId = window.location.search.split('=')[2];
+
     const mp = new MercadoPago('APP_USR-6c648660-4879-4fa7-90ab-06e16f8240d3', {
         locale: 'es-CL'
     });
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
+        let response = await fetch(backendUrl + '/GetOrders?orderId=' + orderId + "&userId=" + userId);
+        if (response.status != 200) return alert('Error al obtener la orden');
+        let json = await response.json();
+    
+        let transactionAmount = json.order.finalPrice;
+
+        console.log(transactionAmount);
+
         const settings = {
             initialization: {
                 amount: transactionAmount, // monto a ser pago. Debe ser un número entero.
@@ -29,7 +37,7 @@
                 onReady: () => {
                     // callback llamado cuando Brick esté listo
                     let total = document.getElementById('total');
-                    let formattedTotal = transactionAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    let formattedTotal = transactionAmount.toLocaleString('es-CL');
                     total.innerText = `Total: $${formattedTotal}`;
                     total.classList.remove('hidden');
                 },
@@ -50,6 +58,7 @@
                                 // resolve();
                                 if (response.status == 200) {
                                     resolve();
+                                    localStorage.removeItem('productsIds');
                                     window.location.href = "/gracias";
                                 } else {
                                     alert("Su pago fue rechazado. Por favor intente nuevamente.");

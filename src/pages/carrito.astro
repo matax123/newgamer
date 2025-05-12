@@ -31,7 +31,7 @@ import Header from "../components/Header.astro";
             <h1 class="text-center pb-10">Carrito</h1>
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 <div id="product-grid" class="flex flex-col gap-1"></div>
-                <div id="total" class="flex flex-col gap-3 pt-2">
+                <div id="form" class="flex flex-col gap-3 pt-2">
                     <span class="underline">Entrega</span>
                     <input
                         type="text"
@@ -90,7 +90,19 @@ import Header from "../components/Header.astro";
                         placeholder="Apartamento/Casa (si aplica)"
                         oninput="formUpdate()"
                     />
-                    <span class="price font-semibold">Total: </span>
+                    <input
+                        id="coupon"
+                        type="text"
+                        class="backgroundColor2 darkBackgroundColor10 darkColor2 h-10 pb-1 px-2 placeholder-neutral-400"
+                        placeholder="Cupón (opcional)"
+                        oninput="formUpdate()"
+                    />
+                    <div class="flex flex-col">
+                        <span id="discount" class="hidden">Descuento: </span>
+                        <span id="delivery" class="">Envío: </span>
+                        <span id="total" class="font-semibold">Total: </span>
+                    </div>
+
                     <div class="flex flex-row gap-1">
                         <input
                             id="check"

@@ -47,6 +47,10 @@ function deleteProduct(productId) {
 }
 
 function refreshProductInCart() {
+    const total = document.querySelector('#total');
+    const discount = document.querySelector('#discount');
+    const delivery = document.querySelector('#delivery');
+    const coupon = document.querySelector('#coupon');
     productsCards = document.querySelectorAll('.product-card');
     productsIds = JSON.parse(localStorage.getItem('productsIds')) || [];
     productsQuantity = productsIds.length;
@@ -54,7 +58,7 @@ function refreshProductInCart() {
     productsCards.forEach(card => {
         let productId = parseInt(card.dataset.productId);
         let quantity = productsIds.filter(id => id == parseInt(productId)).length;
-        if(quantity == 0) card.classList.add('hidden');
+        if (quantity == 0) card.classList.add('hidden');
         else card.querySelector('.quantity').innerText = quantity;
         totalPrice += quantity * productsLists.find(product => product.id == productId).price;
     });
@@ -64,7 +68,19 @@ function refreshProductInCart() {
         cartQuantity.classList.remove('hidden');
     }
     else cartQuantity.classList.add('hidden');
-    document.querySelector('#total .price').innerText = 'Total: $'+totalPrice.toLocaleString('es-CL');
+
+    const { discountPrice, deliveryPrice, finalPrice } = applyCoupon(coupon.value, totalPrice);
+
+    if (discountPrice == 0) discount.classList.add('hidden');
+    else {
+        discount.innerText = 'Descuento: $' + (discountPrice).toLocaleString('es-CL');
+        discount.classList.remove('hidden');
+    }
+
+    if (deliveryPrice == 0) delivery.innerText = 'Envío: Gratis';
+    else delivery.innerText = 'Envío: $' + (deliveryPrice).toLocaleString('es-CL');
+
+    total.innerText = 'Total: $' + (finalPrice).toLocaleString('es-CL');
 }
 
 function clearCart() {
@@ -72,28 +88,54 @@ function clearCart() {
     loadProducts();
 }
 
-function formUpdate(){
+function formUpdate() {
+    const coupon = document.querySelector('#coupon');
+
     let region = document.getElementById('region').value;
     let ciudad = document.getElementById('ciudad').value;
     let calle = document.getElementById('calle').value;
     let numero = document.getElementById('numero').value;
     let apartamentoCasa = document.getElementById('apartamentoCasa').value;
     let check = document.getElementById('check').checked;
-    if(region != '' && ciudad != '' && calle != '' && numero != '' && apartamentoCasa != '' && check == true){
+    if (region != '' && ciudad != '' && calle != '' && numero != '' && apartamentoCasa != '' && check == true) {
         document.getElementById('confirmar').disabled = false;
     } else {
         document.getElementById('confirmar').disabled = true;
     }
+
+    if (coupon.value != '') {
+        refreshProductInCart();
+    }
 }
 
-async function createOrder(){
+function applyCoupon(coupon, totalPrice) {
+    let discountPrice = 0;
+    let deliveryPrice = 0;
+    let finalPrice = 0;
+
+    //Descuentos
+    if (coupon == "LEVELUP25") discountPrice = totalPrice * 0.1;
+
+    if (totalPrice - discountPrice < 100000) deliveryPrice = 20000;
+
+    finalPrice = totalPrice - discountPrice + deliveryPrice;
+
+    return {
+        discountPrice: discountPrice,
+        deliveryPrice: deliveryPrice,
+        finalPrice: finalPrice
+    }
+}
+
+async function createOrder() {
+    const coupon = document.querySelector('#coupon');
     let products = JSON.parse(localStorage.getItem('productsIds')) || [];
     let region = document.getElementById('region').value;
     let ciudad = document.getElementById('ciudad').value;
     let calle = document.getElementById('calle').value;
     let numero = document.getElementById('numero').value;
     let apartamentoCasa = document.getElementById('apartamentoCasa').value;
-    if(products.length == 0) return alert('No hay productos en el carrito.');
+    if (products.length == 0) return alert('No hay productos en el carrito.');
 
     let distinctProducts = [...new Set(products)];
     let productsQuantity = distinctProducts.map(id => {
@@ -108,14 +150,20 @@ async function createOrder(){
         totalPrice += product.price * product.quantity;
     });
 
+    const { discountPrice, deliveryPrice, finalPrice } = applyCoupon(coupon.value, totalPrice);
+
     let body = {
         products: productsQuantity,
-        totalPrice: totalPrice,
         regionId: region,
         city: ciudad,
         street: calle,
         houseNumber: numero,
-        residence: apartamentoCasa
+        residence: apartamentoCasa,
+        coupon: coupon.value,
+        discountPrice: discountPrice,
+        deliveryPrice: deliveryPrice,
+        totalPrice: totalPrice,
+        finalPrice: finalPrice
     }
 
     let response = await fetch(backendUrl + '/CreateOrder', {
@@ -125,11 +173,11 @@ async function createOrder(){
         },
         body: JSON.stringify(body)
     });
-    if(response.status != 200) return alert('Error al crear la orden');
+    if (response.status != 200) return alert('Error al crear la orden');
     let json = await response.json();
-    let orderId = json.id;
-    // localStorage.removeItem('productsIds');
-    window.location.href = '/confirmar?orderId='+orderId+"&amount="+totalPrice;
+    let orderId = json.orderId;
+    let userId = json.userId;
+    window.location.href = '/confirmar?orderId=' + orderId + '&userId=' + userId;
 }
 
 
@@ -140,7 +188,7 @@ async function loadProducts() {
     //fetch products
     productsLists = [];
     let response = await fetch(backendUrl + '/GetProducts')
-    if(response.status != 200) {
+    if (response.status != 200) {
         console.log('Error fetching products');
         return;
     }
@@ -156,4 +204,8 @@ async function loadProducts() {
     refreshProductInCart();
 }
 
-loadProducts();
+window.addEventListener('pageshow', function () {
+    setTimeout(() => {
+        loadProducts();
+    }, 0);
+});
