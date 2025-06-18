@@ -265,6 +265,15 @@ function createCarousel(container, filesNames) {
     
 }
 
+async function getCategories(){
+    let response = await fetch(backendUrl + '/GetCategories')
+    if(response.status != 200) {
+        throw new Error('Failed to load categories: ' + response.statusText);
+    }
+    let json = await response.json();
+    categories = json.categories;
+}
+
 //END: HTML FUNCTIONS
 
 let productId = parseInt(window.location.search.split('=')[1]);
@@ -272,7 +281,7 @@ let productId = parseInt(window.location.search.split('=')[1]);
 async function loadProducts() {
     let productImage = document.getElementById('productImage')
     let productTitle = document.getElementById('productTitle')
-    let productsCategory = document.getElementById('productCategory')
+    let productCategory = document.getElementById('productCategory')
     let productPrice = document.getElementById('productPrice')
     let productStock = document.getElementById('productStock')
     let productDescription = document.getElementById('productDescription')
@@ -286,13 +295,15 @@ async function loadProducts() {
     let json = await response.json();
     product = json.products[0];
 
+    
+
     let filesNames = product.filesNames.split(',');
     let carousel = document.getElementById('carousel');
     createCarousel(carousel, filesNames);
     // let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
     // productImage.src = imageUrl;
     productTitle.innerText = product.name;
-    productsCategory.innerText = product.category;
+    productCategory.innerText = product.category;
     productPrice.innerText = '$' + product.price.toLocaleString('es-CL');
     productStock.innerText = product.stock;
 
