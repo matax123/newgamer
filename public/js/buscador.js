@@ -97,7 +97,6 @@ function onCategoryChange(event) {
     filterProducts(event.target.value);
     window.history.replaceState({}, '', '?category=' + event.target.value);
 }
-selectCategory.addEventListener('change', onCategoryChange);
 
 async function filterProducts(category){
     let productGrid = document.getElementById('product-grid');
@@ -133,11 +132,21 @@ async function loadProducts() {
     let json = await response.json();
     productsLists = json.products;
 
+    let cateogiresList = [];
+    response = await fetch(backendUrl + '/GetCategories')
+    if(response.status != 200) {
+        console.log('Error fetching categories');
+        return;
+    }
+    json = await response.json();
+    cateogiresList = json.categories;
+
     productsLists.forEach(product => {
         let filesNames = product.filesNames.split(',');
         let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
         let price = product.price.toLocaleString('es-CL');
-        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, price, imageUrl, product.quantity);
+        let categoryName = cateogiresList.filter(category => category.id == product.idCategory)[0].name;
+        productGrid.innerHTML += createProductElement(product.id, product.name, categoryName, price, imageUrl, product.quantity);
     });
     refreshProductInCart();
 }

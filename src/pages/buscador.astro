@@ -37,7 +37,9 @@ import Header from '../components/Header.astro';
                     <div class="w-full  max-w-sm min-w-[200px]">
                         <div class="relative">
                             <select id="selectCategory"
-                                class="w-64 font-semibold backgroundColor2 darkColor6 darkBackgroundColor10 text-sm rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+                                class="w-64 font-semibold backgroundColor2 darkColor6 darkBackgroundColor10 text-sm rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer"
+                                onchange="onCategoryChange(event)"
+                            >
                             </select>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2"
                                 stroke="currentColor" class="darkColor6 darkBackgroundColor9 h-5 w-5 ml-1 absolute top-2.5 right-2.5 text-slate-700">
