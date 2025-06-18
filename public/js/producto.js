@@ -295,7 +295,16 @@ async function loadProducts() {
     let json = await response.json();
     product = json.products[0];
 
-    
+    let cateogiresList = [];
+    response = await fetch(backendUrl + '/GetCategories')
+    if(response.status != 200) {
+        console.log('Error fetching categories');
+        return;
+    }
+    json = await response.json();
+    cateogiresList = json.categories;
+
+    product.category = cateogiresList.filter(category => category.id == product.idCategory)[0].name;
 
     let filesNames = product.filesNames.split(',');
     let carousel = document.getElementById('carousel');
