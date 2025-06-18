@@ -145,8 +145,8 @@ async function loadProducts() {
         let filesNames = product.filesNames.split(',');
         let imageUrl = backendUrl + "/GetImage?fileName=" + filesNames[0];
         let price = product.price.toLocaleString('es-CL');
-        let categoryName = cateogiresList.filter(category => category.id == product.idCategory)[0].name;
-        productGrid.innerHTML += createProductElement(product.id, product.name, categoryName, price, imageUrl, product.quantity);
+        product.category = cateogiresList.filter(category => category.id == product.idCategory)[0].name;
+        productGrid.innerHTML += createProductElement(product.id, product.name, product.category, price, imageUrl, product.quantity);
     });
     refreshProductInCart();
 }
