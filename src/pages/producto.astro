@@ -15,7 +15,7 @@ import Header from "../components/Header.astro";
         <link href="/styles/colors.css" rel="stylesheet">
         <link href="/styles/loader.css" rel="stylesheet">
         <link href="/styles/carousel.css" rel="stylesheet">
-        <link href="/styles/styles.css" rel="stylesheet">
+        <link href="/styles/producto.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -43,13 +43,13 @@ import Header from "../components/Header.astro";
                             <button class="productNotInCard hidden mt-3 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
                                 Agregar al carrito
                             </button>
-                            <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-5">
-                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct()">
-                                    +
+                            <div class="productInCart mt-3 hidden flex flex-row justify-start items-center gap-4">
+                                <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 w-10 rounded" onclick="removeProduct()">
+                                    -
                                 </button>
                                 <span class="quantity font-bold">0</span>
-                                <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="removeProduct()">
-                                    -
+                                <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 w-10 rounded" onclick="addProduct()">
+                                    +
                                 </button>
                             </div>
                         </div>

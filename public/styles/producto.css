@@ -1,0 +1,12 @@
+:root[theme="dark"] table {
+    border-collapse: collapse;
+    border: 2px solid var(--color9) !important;
+}
+
+:root[theme="dark"] th {
+    border-bottom: 2px solid var(--color9) !important;
+}
+
+h2{
+    margin-top: 10px;
+}
