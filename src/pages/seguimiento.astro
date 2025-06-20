@@ -1,0 +1,59 @@
+---
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NewGamer - Seguimiento</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="icon" href="./img/icono 3.svg" />
+
+        <link href="/styles/normalizer.css" rel="stylesheet">
+        <link href="/styles/colors.css" rel="stylesheet">
+        <link href="/styles/loader.css" rel="stylesheet">
+        <link href="/styles/carousel.css" rel="stylesheet">
+        <!-- <link href="/styles/producto.css" rel="stylesheet"> -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+        <script src="/js/beforeLoad.js" is:inline></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" is:inline></script>
+    </head>
+    <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+        <dialog open id="loading" class="flex flex-col color1 darkColor5">
+            <span class="lds-dual-ring"></span>
+            <span>Cargando...</span>
+        </dialog>
+    <Header />
+        <section class="py-10">
+            <div class="container mx-auto">
+                <div class="max-w-3xl mx-auto p-6">
+                    <h1 class="font-bold mb-8 text-center">Seguimiento de Envío</h1>
+
+                    <div class="bg-[var(--color1)] dark:bg-[var(--color10)] rounded-2xl shadow p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-5">Detalles del pedido</h2>
+                    <p><span class="font-semibold">Número de seguimiento:</span> #123456789CL</p>
+                    <p><span class="font-semibold">Transportista:</span> Chilexpress</p>
+                    <p><span class="font-semibold">Estado:</span> En camino</p>
+                    <p><span class="font-semibold">Fecha estimada de entrega:</span> 21 de junio de 2025</p>
+                    </div>
+
+                    <div class="bg-[var(--color1)] dark:bg-[var(--color10)] rounded-2xl shadow p-6">
+                    <h2 class="text-xl font-semibold mb-5">Historial de seguimiento</h2>
+                    <div id="timeline"></div>
+
+                </div>
+        </section>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" is:inline></script> 
+    <script src="/js/common.js" is:inline></script>
+    <script src="/js/timeline.js" is:inline></script>
+    <script src="/js/seguimiento.js" is:inline></script>
+
+    
+</html>
