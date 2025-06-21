@@ -1,4 +1,5 @@
 ---
+import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 ---
 
@@ -20,13 +21,13 @@ import Header from "../components/Header.astro";
         <script src="/js/beforeLoad.js" is:inline></script>
     </head>
 
-    <body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+    <body class="preload color3 darkBackgroundColor1 darkColor5 min-h-screen flex flex-col" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
         <dialog open id="loading" class="flex flex-col color1 darkColor5">
             <span class="lds-dual-ring"></span>
             <span>Cargando...</span>
         </dialog>
     <Header />
-    <section class="py-10">
+    <main class="flex-1">
         <div class="container mx-auto px-8">
             <h1 class="text-center pb-10">Carrito</h1>
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -143,8 +144,9 @@ import Header from "../components/Header.astro";
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
+    <Footer/>
     </body>
 
     <script src="/js/common.js" is:inline></script>

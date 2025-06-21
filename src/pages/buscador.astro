@@ -1,4 +1,5 @@
 ---
+import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 ---
 
@@ -23,13 +24,13 @@ import Header from '../components/Header.astro';
 
 </head>
 
-<body class="preload color3 darkBackgroundColor1 darkColor5" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
+<body class="preload color3 darkBackgroundColor1 darkColor5 min-h-screen flex flex-col" data-spy="#scroll" data-target="#nav" data-offset="20" style="opacity: 0;">
     <dialog open id="loading" class="flex flex-col color1 darkColor5">
         <span class="lds-dual-ring"></span>
         <span>Cargando...</span>
     </dialog>
 <Header></Header>
-    <section class="py-10">
+    <main class="flex-1">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-3">Búsqueda</h2>
             <div class="flex flex-row justify-center items-center gap-3">
@@ -53,8 +54,8 @@ import Header from '../components/Header.astro';
             <div id="product-grid" class="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-4">
             </div>
         </div>
-    </section>
-
+    </main>
+        <Footer />
 </body>
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <script src="/js/common.js" is:inline></script>
