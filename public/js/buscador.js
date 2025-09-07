@@ -10,8 +10,8 @@ function createProductElement(id, title, category, price, img, quantity) {
                     </a>
                 </div>
                 <h2 class="text-xl font-semibold leading-none pt-2">${title}</h2>
-                <p class="color1 darkColor2 leading-none mt-2">${category}</p>
-                <p class="text-lg mt-3">$${price}</p>
+                <p class="color1 darkColor2 leading-none mt-3">${category}</p>
+                <p class="text-lg mt-2">$${price}</p>
             </div>
             <div class="flex justify-center">
                 <button class="productNotInCard hidden mt-4 mb-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" onclick="addProduct(${id})">
