@@ -80,7 +80,7 @@ function createCarousel(container, filesNames) {
     let slidesHTML = '';
     filesNames.forEach(fileName => {
         if (fileName.endsWith('.mp4')) {
-            slidesHTML += `<div class="carousel-slide bg-black">
+            slidesHTML += `<div class="carousel-slide bg-[radial-gradient(ellipse_100%_50%_at_center,black_0%,black_30%,transparent_80%)]">
                                 <video class="carousel-video" loop muted autoplay>
                                     <source src="${backendUrl}/GetVideo?fileName=${fileName}" type="video/mp4" draggable="false">
                                 </video>
