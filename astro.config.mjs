@@ -3,5 +3,9 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://newgamer.cl'
+    vite: {
+      server: {
+        allowedHosts: ['newgamer.cl'],
+      },
+    },
   })
